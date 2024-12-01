@@ -10,9 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_11_23_191659) do
+ActiveRecord::Schema[8.0].define(version: 2024_12_01_182300) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+
+  create_table "teachers", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -22,6 +27,20 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_23_191659) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "role"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "roll_no"
+    t.string "phone_number"
+    t.date "date_of_birth"
+    t.string "gender"
+    t.text "address"
+    t.string "employee_id"
+    t.string "subject_specialization"
+    t.string "qualification"
+    t.integer "experience_years"
+    t.string "designation"
+    t.date "joining_date"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

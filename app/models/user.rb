@@ -3,4 +3,10 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-end
+
+
+
+  self.inheritance_column = :role
+
+  validates :role, presence: true, inclusion: { in: %w[Student Teacher] }
+v end
