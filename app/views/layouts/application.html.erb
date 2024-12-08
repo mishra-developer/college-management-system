@@ -16,13 +16,31 @@
     <link rel="icon" href="/icon.png" type="image/png">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
 
     <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
+  <body> 
+    <%if current_user.present?%>
+      <nav class="navbar navbar-expand-lg navbar-light bg-dark color-#1c2833">
+        <a class="navbar-brand text-white" href="#">CampusConnect</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+          <span class="navbar-text sign-out-link">
+              <%= link_to 'Profile', profiles_show_path(current_user), class: 'text-white' %>||
+              <%= link_to 'Sign out', destroy_user_session_path, class: 'text-white' %>
+          </span>
+        </div>
+      </nav>
+    <%end%>
     <%= yield %>
   </body>
 </html>
+ 

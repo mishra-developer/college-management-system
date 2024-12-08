@@ -1,0 +1,35 @@
+
+<%if current_user.role == 'Student'%>
+    <h2>'Sutent Profile' </h2>
+  <!-- Display student's information -->
+
+    <p><strong>First Name:</strong> <%= @student.first_name %></p>
+    <p><strong>Last Name:</strong> <%= @student.last_name %></p>
+    <p><strong>Email:</strong> <%= @student.email %></p>
+    <p><strong>Enrollment Number:</strong> <%= @student.roll_no %></p>
+    <p><strong>Phone Number:</strong> <%= @student.phone_number %></p>
+    <p><strong>Date of Birth:</strong> <%= @student.date_of_birth %></p>
+    <p><strong>Gender:</strong> <%= @student.gender %></p>
+    <!-- Optional: Link to edit the profile -->
+    <%# <%= link_to 'Edit Profile', edit_profile_path(@student), class: 'btn btn-primary' %>
+
+    <!-- Optional: Button to view student's assignments, grades, or other details -->
+    <%# <%= link_to 'View Assignments', assignments_student_path(@student), class: 'btn btn-info' %> 
+    <%# <%= link_to 'View Grades', grades_student_path(@student), class: 'btn btn-success' %> 
+<%elsif current_user.role == 'Teacher'%>
+    <h2>'Teacher Profile' </h2>
+    <p><strong>First Name:</strong> <%= @student.first_name %></p>
+    <p><strong>Last Name:</strong> <%= @student.last_name %></p>
+    <p><strong>Email:</strong> <%= @student.email %></p>
+    <p><strong>Phone Number:</strong> <%= @student.phone_number %></p>
+    <p><strong>Date of Birth:</strong> <%= @student.date_of_birth %></p>
+    <p><strong>Gender:</strong> <%= @student.gender %></p>
+
+<%elsif current_user.role == 'Parent'%>
+    <p><strong>First Name:</strong> <%= @student.first_name %></p>
+    <p><strong>Last Name:</strong> <%= @student.last_name %></p>
+    <p><strong>Email:</strong> <%= @student.email %></p>
+    <p><strong>Phone Number:</strong> <%= @student.phone_number %></p>
+    <p><strong>Date of Birth:</strong> <%= @student.date_of_birth %></p>
+    <p><strong>Gender:</strong> <%= @student.gender %></p>
+<%end %>
