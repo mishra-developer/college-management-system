@@ -1,0 +1,2 @@
+class Transpot < User
+end

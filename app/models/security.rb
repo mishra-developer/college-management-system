@@ -1,0 +1,2 @@
+class Security < User
+end
