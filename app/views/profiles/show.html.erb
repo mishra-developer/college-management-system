@@ -32,4 +32,25 @@
     <p><strong>Phone Number:</strong> <%= @student.phone_number %></p>
     <p><strong>Date of Birth:</strong> <%= @student.date_of_birth %></p>
     <p><strong>Gender:</strong> <%= @student.gender %></p>
+<%elsif current_user.role == 'Admin'%>
+    <p><strong>First Name:</strong> <%= @student.first_name %></p>
+    <p><strong>Last Name:</strong> <%= @student.last_name %></p>
+    <p><strong>Email:</strong> <%= @student.email %></p>
+    <p><strong>Phone Number:</strong> <%= @student.phone_number %></p>
+    <p><strong>Date of Birth:</strong> <%= @student.date_of_birth %></p>
+    <p><strong>Gender:</strong> <%= @student.gender %></p>
+<%elsif current_user.role == 'Security'%>
+    <p><strong>First Name:</strong> <%= @student.first_name %></p>
+    <p><strong>Last Name:</strong> <%= @student.last_name %></p>
+    <p><strong>Email:</strong> <%= @student.email %></p>
+    <p><strong>Phone Number:</strong> <%= @student.phone_number %></p>
+    <p><strong>Date of Birth:</strong> <%= @student.date_of_birth %></p>
+    <p><strong>Gender:</strong> <%= @student.gender %></p>
+<%elsif current_user.role == 'Transpot'%>
+    <p><strong>First Name:</strong> <%= @student.first_name %></p>
+    <p><strong>Last Name:</strong> <%= @student.last_name %></p>
+    <p><strong>Email:</strong> <%= @student.email %></p>
+    <p><strong>Phone Number:</strong> <%= @student.phone_number %></p>
+    <p><strong>Date of Birth:</strong> <%= @student.date_of_birth %></p>
+    <p><strong>Gender:</strong> <%= @student.gender %></p>
 <%end %>
