@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get "teachers/scaffold"
+  get "students/index"
+  get "students/new"
+  get "students/edit"
   get "profiles/index"
   get "profiles/show"
   get "welcome/index"
@@ -14,5 +18,7 @@ Rails.application.routes.draw do
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
   # Defines the root path route ("/")
+  resources :students
+  resources :teachers
   root "welcome#index"
 end

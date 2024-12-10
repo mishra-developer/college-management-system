@@ -8,5 +8,5 @@ class User < ApplicationRecord
 
   self.inheritance_column = :role
 
-  validates :role, presence: true, inclusion: { in: %w[Student Teacher] }
+  validates :role, presence: true, inclusion: { in: %w[Student Teacher Transpot Security Admin] }
 end

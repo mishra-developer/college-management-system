@@ -3,7 +3,6 @@ class ProfilesController < ApplicationController
   end
 
   def show
-    @student =Student.find(params[:format])
-
+    @student =User.find(params[:format])
   end
 end
