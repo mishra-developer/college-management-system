@@ -1,59 +1,61 @@
-<h1>New Teacher</h1>
+<div class = 'center-input-form'>
+  <h1>New Teacher</h1>
 
-<%= form_with model: @teacher, local: true do |form| %>
-  <% if @teacher.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@student.errors.count, "error") %> prohibited this student from being saved:</h2>
-      <ul>
-        <% @teacher.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
+  <%= form_with model: @teacher, local: true do |form| %>
+    <% if @teacher.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@student.errors.count, "error") %> prohibited this student from being saved:</h2>
+        <ul>
+          <% @teacher.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="form-group">
+      <%= form.label :first_name %>
+      <%= form.text_field :first_name, class: "form-control" %>
     </div>
+
+    <div class="form-group">
+      <%= form.label :last_name %>
+      <%= form.text_field :last_name, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :email %>
+      <%= form.email_field :email, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :phone_number %>
+      <%= form.telephone_field :phone_number, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :address %>
+      <%= form.text_area :address, rows: 3, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :subject_specialization, "Specialization" %>
+      <%= form.text_field :subject_specialization, class: "form-control" %>
+    </div>
+
+    <div class="field">
+      <%= form.label :password %>
+      <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <% end %><br />
+      <%= form.password_field :password, autocomplete: "new-password" %>
+    </div>
+
+    <div class="field">
+      <%= form.label :password_confirmation %><br />
+      <%= form.password_field :password_confirmation, autocomplete: "new-password" %>
+    </div>
+
+    <%= form.submit "Create Teacher", class: "btn btn-primary" %>
   <% end %>
-
-  <div class="form-group">
-    <%= form.label :first_name %>
-    <%= form.text_field :first_name, class: "form-control" %>
-  </div>
-
-  <div class="form-group">
-    <%= form.label :last_name %>
-    <%= form.text_field :last_name, class: "form-control" %>
-  </div>
-
-  <div class="form-group">
-    <%= form.label :email %>
-    <%= form.email_field :email, class: "form-control" %>
-  </div>
-
-  <div class="form-group">
-    <%= form.label :phone_number %>
-    <%= form.telephone_field :phone_number, class: "form-control" %>
-  </div>
-
-  <div class="form-group">
-    <%= form.label :address %>
-    <%= form.text_area :address, rows: 3, class: "form-control" %>
-  </div>
-
-  <div class="form-group">
-    <%= form.label :subject_specialization, "Specialization" %>
-    <%= form.text_field :subject_specialization, class: "form-control" %>
-  </div>
-
-  <div class="field">
-    <%= form.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= form.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= form.label :password_confirmation %><br />
-    <%= form.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <%= form.submit "Create Student", class: "btn btn-primary" %>
-<% end %>
+</div>
