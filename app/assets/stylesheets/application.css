@@ -113,3 +113,92 @@
 .sign-out-link {
   margin-left: auto; /* Push it to the right */
 }
+
+.center {
+  width: 300px;              /* Form width */
+  padding: 20px;
+  background-color: #ffffff; /* Form background */
+  border: 2px solid #ccc;
+
+  /* Centering */
+  margin: 0 auto;            /* Horizontally center with auto margin */
+  position: absolute;        /* Enable absolute positioning */
+  top: 50%;                  /* Move to 50% down from the top */
+  left: 50%;                 /* Move to 50% right from the left */
+  transform: translate(-50%, -50%); /* Adjust back to center */
+}
+
+.center-input-form {
+  /* Form styling */
+  width: 100%;
+  max-width: 400px;          /* Restrict maximum width */
+  padding: 20px;
+  background-color: #ffffff; /* Form background */
+  border: 2px solid #ccc;
+  border-radius: 8px;        /* Rounded corners */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for better aesthetics */
+
+  /* Centering */
+  margin: 0 auto;            /* Center horizontally */
+  display: flex;             /* Use flexbox for centering */
+  flex-direction: column;    /* Stack content vertically */
+  justify-content: center;   /* Center content vertically */
+  position: relative;        /* Keep relative positioning for flexibility */
+  min-height: 100vh;         /* Ensure container spans the full viewport height */
+  box-sizing: border-box;    /* Include padding and border in element's width/height */
+}
+
+
+
+.dropdown-menu {
+  min-width: 200px;         /* Ensure consistent width */
+  border-radius: 5px;       /* Rounded corners */
+}
+
+.dropdown-menu .dropdown-item {
+  padding: 10px;            /* Increase spacing */
+  font-size: 14px;          /* Adjust font size */
+}
+
+.btn-primary {
+  background-color: #2d4966; /* Custom primary color */
+  border: none;              /* Remove border */
+  padding: 8px 15px;         /* Adjust padding */
+  font-size: 14px;           /* Adjust font size */
+}
+
+.btn-outline-light {
+  color: #863939;            /* White text for contrast */
+  border: 2px solid #6e1818; /* White border */
+  padding: 8px 15px;         /* Adjust padding */
+}
+
+.btn-danger {
+  background-color: #dc3545; /* Danger button red color */
+  border: none;              /* Remove border */
+  padding: 8px 15px;         /* Adjust padding */
+}
+
+.me-3 {
+  margin-right: 1rem;        /* Add spacing between buttons */
+}
+
+.custom-navbar {
+  background-color: #1c2833;; /* New color */
+  color: #ffffff;           /* Optional: White text for contrast */
+}
+
+.custom-navbar .navbar-brand, 
+.custom-navbar .navbar-text, 
+.custom-navbar .nav-link {
+  color: #ffffff !important; /* Ensure text is visible on dark background */
+}
+
+
+.custom-navbar .dropdown-item {
+  color: #ffffff;            /* White text for dropdown items */
+}
+
+.custom-navbar .dropdown-item:hover {
+  background-color: #02162b; /* Highlight dropdown item on hover */
+}
