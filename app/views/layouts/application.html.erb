@@ -38,26 +38,28 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarText">
-          <span class="navbar-text sign-out-link d-flex align-items-center justify-content-end">
-            <div class="dropdown me-3">
-               <a
-                class="btn text-white dropdown-toggle" 
-                type="link" 
-                id="dropdownMenuButton" 
-                data-bs-toggle="dropdown" 
-                aria-expanded="false">
-                Add New Users
-              </a>
-              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
-                <li><a class="dropdown-item" href="/students/new">Add Student</a></li>
-                <li><a class="dropdown-item" href="/teachers/new">Add Teacher</a></li>
-                <li><a class="dropdown-item" href="#">Add Security</a></li>
-                <li><a class="dropdown-item" href="#">Add Transport</a></li>
-                <li><a class="dropdown-item" href="#">Add Parent</a></li>
-              </ul>
-            </div>
-            <%= link_to 'Profile', profiles_show_path(current_user), class: ' text-white me-3' %>
-            <%= link_to 'Sign Out', destroy_user_session_path, class: 'btn text-white' %>
+            <%if current_user.role == 'Admin'%>
+              <div class="dropdown">
+                <button 
+                  class="btn btn-secondary dropdown-toggle" 
+                  type="button" 
+                  id="dropdownMenuButton" 
+                  data-bs-toggle="dropdown" 
+                  aria-expanded="false">
+                  Add new users
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <li><a class="dropdown-item" href="/students/new">Add Student</a></li>
+                  <li><a class="dropdown-item" href="/teachers/new">Add Teacher</a></li>
+                  <li><a class="dropdown-item" href="#">Add Security</a></li>
+                  <li><a class="dropdown-item" href="#">Add Transport</a></li>
+                  <li><a class="dropdown-item" href="#">Add parent</a></li>
+                </ul>
+              </div>
+            <%end%>
+          <span class="navbar-text sign-out-link">
+              <%= link_to 'Profile', profiles_show_path(current_user), class: 'text-white' %>||
+              <%= link_to 'Sign out', destroy_user_session_path, class: 'text-white' %>
           </span>
         </div>
       </nav>
