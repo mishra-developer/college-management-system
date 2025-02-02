@@ -20,7 +20,8 @@ class StudentsController < ApplicationController
   def create
     @student = Student.new(student_params)
     if @student.save
-      redirect_to @student, notice: 'Student was successfully created.'
+      flash[:success] = 'Student was successfully created.'
+      redirect_to profiles_show_path(@student)
     else
       render :welcome_index_path, status: :unprocessable_entity
     end
@@ -54,6 +55,6 @@ class StudentsController < ApplicationController
 
   # Only allow a trusted parameter "white list" through
   def student_params
-    params.require(:student).permit(:first_name, :last_name, :email, :phone_number, :address, :date_of_birth, :password, :password_confirmation)
+    params.require(:student).permit(:first_name, :last_name, :email, :phone_number, :address, :date_of_birth, :roll_no, :password, :password_confirmation)
   end
 end

@@ -1,3 +1,9 @@
+|    <% if flash[:error].present? %>
+      <p class='flash-error'><%= flash[:error] %></p>
+    <% end %>
+    <% if flash[:success].present? %>
+      <p class='flash-success'><%= flash[:success] %></p>
+    <% end %>
 <div class = "center-input-form">
   <h1>New Student</h1>
 
