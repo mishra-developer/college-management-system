@@ -1,0 +1,10 @@
+//= link application.js
+//= link controllers/application.js
+//= link controllers/hello_controller.js
+//= link controllers/index.js
+//= link_directory ../stylesheets .css
+//= link administrate/application.css
+//= link administrate/application.js
+//= link logo.png
+//= link logo1.png
+  //= link logo3.png
