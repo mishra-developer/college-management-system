@@ -1,4 +1,3 @@
 class Student < User
-  has_many :parents
+  belongs_to :parent, optional: true
 end
-  

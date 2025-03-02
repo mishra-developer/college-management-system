@@ -1,3 +1,3 @@
 class Parent < User
-  belongs_to :student
+  has_many :students
 end

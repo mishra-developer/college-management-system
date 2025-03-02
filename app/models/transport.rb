@@ -1,0 +1,2 @@
+class Transport < User
+end
