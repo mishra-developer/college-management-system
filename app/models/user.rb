@@ -4,9 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-
+  # enum gender: { male: 0, female: 1 }
 
   self.inheritance_column = :role
 
-  validates :role, presence: true, inclusion: { in: %w[Student Teacher Transpot Security Admin] }
+  validates :role, presence: true, inclusion: { in: %w[Student Teacher Parent Transport Security SuperAdmin] }
 end

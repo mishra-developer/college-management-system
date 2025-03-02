@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_12_08_180026) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_02_122824) do
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -55,12 +55,27 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_08_180026) do
     t.string "shift_timing_to"
   end
 
+  create_table "students", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "qualification"
+    t.date "from_batch"
+    t.date "to_batch"
+    t.integer "parent_id"
+    t.index ["parent_id"], name: "index_students_on_parent_id"
+  end
+
+  create_table "super_admins", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "teachers", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "transpots", force: :cascade do |t|
+  create_table "transports", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "vehicle_number"
@@ -80,10 +95,10 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_08_180026) do
     t.string "role"
     t.string "first_name"
     t.string "last_name"
-    t.string "roll_no"
     t.string "phone_number"
     t.date "date_of_birth"
     t.string "gender"
+    t.string "roll_no"
     t.text "address"
     t.string "employee_id"
     t.string "subject_specialization"

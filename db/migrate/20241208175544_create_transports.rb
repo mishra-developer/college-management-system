@@ -1,6 +1,6 @@
-class CreateTranspots < ActiveRecord::Migration[8.0]
+class CreateTransports < ActiveRecord::Migration[8.0]
   def change
-    create_table :transpots do |t|
+    create_table :transports do |t|
       t.timestamps
       t.string :vehicle_number
       t.string :route
