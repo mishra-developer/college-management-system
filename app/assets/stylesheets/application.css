@@ -13,14 +13,7 @@
  */
 
 .login-container {
-  display: flex;
-  justify-content: flex-end; /* Start at the right */
-  align-items: center;       /* Vertically center */
-  min-height: 100vh;         /* Full viewport height */
-  padding-right: 20%;        /* Adjust the distance from the right */
-  margin: 0;
   background-color: #1c2833; /* Optional: Background color */
-  font-family: Arial, sans-serif;
 }
 
 .login {
@@ -34,28 +27,9 @@
 }
 
 
-@media (max-width: 300px) {
-  .login-container {
-    justify-content: center; /* Center content on smaller screens */
-    padding-right: 0;        /* Remove padding-right */
-  }
 
-  .login {
-    width: 90%;              /* Make the form take most of the screen width */
-    padding: 15px;           /* Reduce padding for smaller screens */
-    font-size: 14px;         /* Adjust font size for readability */
-  }
-}
 
-.login h2 {
-  margin-bottom: 20px;
-  font-size: 24px;
-  color: #333;
-}
 
-.field {
-  margin-bottom: 15px;
-}
 
 .field label {
   display: block;
@@ -201,4 +175,30 @@
 
 .custom-navbar .dropdown-item:hover {
   background-color: #02162b; /* Highlight dropdown item on hover */
+}
+
+.animated-text {
+  color: #8a28e6;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeSlideUp 1s ease-out forwards;
+}
+
+.delay-1 {
+  animation-delay: 0.5s;
+}
+
+.delay-2 {
+  animation-delay: 1s;
+}
+
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
