@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Welcome to Our Platform</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      width: 100%;
+      max-width: 600px;
+      margin: 20px auto;
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      color: #333;
+    }
+    p {
+      font-size: 16px;
+      color: #555;
+      line-height: 1.5;
+    }
+    .btn {
+      display: inline-block;
+      background-color: #007bff;
+      color: #ffffff;
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 16px;
+      margin-top: 20px;
+    }
+    .footer {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #888;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Welcome, <%= @user.first_name %>!</h1>
+    <p>We’re excited to have you on board. Your account has been successfully created.</p>
+    <p>Click the button below to get started:</p>
+    <a href="http://localhost:3000/users/sign_in" class="btn">Login Now</a>
+    <p>If you have any questions, feel free to reply to this email.</p>
+    <div class="footer">
+      <p>Thank you, <br> The College Management System Team</p>
+    </div>
+  </div>
+</body>
+</html>
