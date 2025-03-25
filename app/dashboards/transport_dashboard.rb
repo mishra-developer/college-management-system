@@ -1,0 +1,107 @@
+require "administrate/base_dashboard"
+
+class TransportDashboard < Administrate::BaseDashboard
+  # ATTRIBUTE_TYPES
+  # a hash that describes the type of each of the model's fields.
+  #
+  # Each different type represents an Administrate::Field object,
+  # which determines how the attribute is displayed
+  # on pages throughout the dashboard.
+  ATTRIBUTE_TYPES = {
+    id: Field::Number,
+    address: Field::Text,
+    date_of_birth: Field::Date,
+    designation: Field::String,
+    email: Field::String,
+    employee_id: Field::String,
+    first_name: Field::String,
+    gender: Field::String,
+    joining_date: Field::Date,
+    last_name: Field::String,
+    phone_number: Field::String,
+    qualification: Field::String,
+    role: Field::String,
+    vehicle_number: Field::String,
+    route: Field::String,
+    type: Field::String,
+    college_id: Field::String
+  }.freeze
+
+  # COLLECTION_ATTRIBUTES
+  # an array of attributes that will be displayed on the model's index page.
+  #
+  # By default, it's limited to four items to reduce clutter on index pages.
+  # Feel free to add, remove, or rearrange items.
+  COLLECTION_ATTRIBUTES = %i[
+    id
+    address
+    date_of_birth
+    designation
+  ].freeze
+
+  # SHOW_PAGE_ATTRIBUTES
+  # an array of attributes that will be displayed on the model's show page.
+  SHOW_PAGE_ATTRIBUTES = %i[
+    id
+    address
+    date_of_birth
+    designation
+    email
+    employee_id
+    first_name
+    gender
+    joining_date
+    last_name
+    phone_number
+    role
+    vehicle_number
+    route
+    type
+    college_id
+  ].freeze
+
+  # FORM_ATTRIBUTES
+  # an array of attributes that will be displayed
+  # on the model's form (`new` and `edit`) pages.
+  FORM_ATTRIBUTES = %i[
+    first_name
+    last_name
+    email
+    phone_number
+    address
+    date_of_birth
+    designation
+    employee_id
+    gender
+    joining_date
+    qualification
+    role
+    route
+    type
+    college_id
+    subject_specialization
+  ].freeze
+
+  HIDDEN_FIELDS = {
+    role: "Transport"
+  }.freeze
+
+  # COLLECTION_FILTERS
+  # a hash that defines filters that can be used while searching via the search
+  # field of the dashboard.
+  #
+  # For example to add an option to search for open resources by typing "open:"
+  # in the search field:
+  #
+  #   COLLECTION_FILTERS = {
+  #     open: ->(resources) { resources.where(open: true) }
+  #   }.freeze
+  COLLECTION_FILTERS = {}.freeze
+
+  # Overwrite this method to customize how transports are displayed
+  # across all pages of the admin dashboard.
+  #
+  # def display_resource(transport)
+  #   "Transport ##{transport.id}"
+  # end
+end

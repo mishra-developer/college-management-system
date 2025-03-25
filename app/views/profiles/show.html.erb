@@ -1,72 +1,113 @@
 
-<div class = 'center'>
-    <%if current_user.role == 'Student'%>
-        <h2>'Sutent Profile' </h2>
-    <!-- Display student's information -->
+<div class="row wrapper border-bottom white-bg page-heading ">
+  <p id="notice"><%= notice %></p>
+  <div class="col-lg-9 card p-4">
+      <h2><%= current_user.role.titleize %> Profile</h2>
+    <ol class="breadcrumb">
+      <li>
+        <%= link_to welcome_index_path do %>
+          <span class="nav-label">Home</span>
+        <% end %>
+      </li>/
+      <li class="active">
+        <strong><%=current_user.first_name%></strong>
+      </li>
+    </ol>
+  </div>
+</div>
 
-        <p><strong>First Name:</strong> <%= @student.first_name %></p>
-        <p><strong>Last Name:</strong> <%= @student.last_name %></p>
-        <p><strong>Email:</strong> <%= @student.email %></p>
-        <p><strong>Enrollment Number:</strong> <%= @student.roll_no %></p>
-        <p><strong>Phone Number:</strong> <%= @student.phone_number %></p>
-        <p><strong>Date of Birth:</strong> <%= @student.date_of_birth %></p>
-        <p><strong>Gender:</strong> <%= @student.gender %></p>
-        <!-- Optional: Link to edit the profile -->
-        <%= link_to 'Edit Profile',profiles_show_path(current_user.id)  %>
+<div class="row mt-5">
+  <div class="col-lg-9">
+    <div class="wrapper wrapper-content animated fadeInUp">
+      <div class="ibox">
+        <div class="ibox-content card p-4 shadow">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="m-b-md">
+                <h2><%= current_user.role.titleize %> Profile</h2>
+              </div>
+            </div>
+          </div>
 
-        <!-- Optional: Button to view student's assignments, grades, or other details -->
-       
-    <%elsif current_user.role == 'Teacher'%>
-        <h2>'Teacher Profile' </h2>
-        <p><strong>First Name:</strong> <%= @student.fiprofiles_showrst_name %></p>
-        <p><strong>Last Name:</strong> <%= @student.last_name %></p>
-        <p><strong>Email:</strong> <%= @student.email %></p>
-        <p><strong>Phone Number:</strong> <%= @student.phone_number %></p>
-        <p><strong>Date of Birth:</strong> <%= @student.date_of_birth %></p>
-        <p><strong>Gender:</strong> <%= @student.gender %></p>
+          <div class="row">
+            <div class="col-lg-6">
+              <dl class="row mb-0">
+                <div class="col-sm-4 text-sm-right"><dt>First Name:</dt></div>
+                <div class="col-sm-8 text-sm-left">
+                  <dd class="mb-1"><%= @user.first_name %></dd>
+                </div>
+              </dl>
+              <dl class="row mb-0">
+                <div class="col-sm-4 text-sm-right"><dt>Last Name:</dt></div>
+                <div class="col-sm-8 text-sm-left">
+                  <dd class="mb-1"><%= @user.last_name %></dd>
+                </div>
+              </dl>
+              <dl class="row mb-0">
+                <div class="col-sm-4 text-sm-right"><dt>Email:</dt></div>
+                <div class="col-sm-8 text-sm-left">
+                  <dd class="mb-1"><%= @user.email %></dd>
+                </div>
+              </dl>
+              <% if current_user.role == 'Student' %>
+                <dl class="row mb-0">
+                  <div class="col-sm-4 text-sm-right"><dt>Enrollment Number:</dt></div>
+                  <div class="col-sm-8 text-sm-left">
+                    <dd class="mb-1"><%= @user.roll_no %></dd>
+                  </div>
+                </dl>
+                <dl class="row mb-0">
+                  <div class="col-sm-4 text-sm-right"><dt>Qualification:</dt></div>
+                  <div class="col-sm-8 text-sm-left">
+                    <dd class="mb-1"><%= @user.qualification %></dd>
+                  </div>
+                </dl>
+              <% end %>
+            </div>
 
-        <%= link_to 'Edit Profile',profiles_show_path(current_user.id)  %>
-
-
-    <%elsif current_user.role == 'Parent'%>
-        <p><strong>First Name:</strong> <%= @student.first_name %></p>
-        <p><strong>Last Name:</strong> <%= @student.last_name %></p>
-        <p><strong>Email:</strong> <%= @student.email %></p>
-        <p><strong>Phone Number:</strong> <%= @student.phone_number %></p>
-        <p><strong>Date of Birth:</strong> <%= @student.date_of_birth %></p>
-        <p><strong>Gender:</strong> <%= @student.gender %></p>
-
-        <%= link_to 'Edit Profile',profiles_show_path(current_user.id)  %>
-
-    <%elsif current_user.role == 'Admin'%>
-        <p><strong>First Name:</strong> <%= @student.first_name %></p>
-        <p><strong>Last Name:</strong> <%= @student.last_name %></p>
-        <p><strong>Email:</strong> <%= @student.email %></p>
-        <p><strong>Phone Number:</strong> <%= @student.phone_number %></p>
-        <p><strong>Date of Birth:</strong> <%= @student.date_of_birth %></p>
-        <p><strong>Gender:</strong> <%= @student.gender %></p>
-
-        <%= link_to 'Edit Profile',profiles_show_path(current_user.id)  %>
-
-    <%elsif current_user.role == 'Security'%>
-        <p><strong>First Name:</strong> <%= @student.first_name %></p>
-        <p><strong>Last Name:</strong> <%= @student.last_name %></p>
-        <p><strong>Email:</strong> <%= @student.email %></p>
-        <p><strong>Phone Number:</strong> <%= @student.phone_number %></p>
-        <p><strong>Date of Birth:</strong> <%= @student.date_of_birth %></p>
-        <p><strong>Gender:</strong> <%= @student.gender %></p>
-
-        <%= link_to 'Edit Profile',profiles_show_path(current_user.id)  %>
-
-    <%elsif current_user.role == 'Transpot'%>
-        <p><strong>First Name:</strong> <%= @student.first_name %></p>
-        <p><strong>Last Name:</strong> <%= @student.last_name %></p>
-        <p><strong>Email:</strong> <%= @student.email %></p>
-        <p><strong>Phone Number:</strong> <%= @student.phone_number %></p>
-        <p><strong>Date of Birth:</strong> <%= @student.date_of_birth %></p>
-        <p><strong>Gender:</strong> <%= @student.gender %></p>
-
-        <%= link_to 'Edit Profile',profiles_show_path(current_user.id)  %>
-
-    <%end %>
+            <div class="col-lg-6">
+              <dl class="row mb-0">
+                <div class="col-sm-4 text-sm-right"><dt>Phone Number:</dt></div>
+                <div class="col-sm-8 text-sm-left">
+                  <dd class="mb-1"><%= @user.phone_number %></dd>
+                </div>
+              </dl>
+              <dl class="row mb-0">
+                <div class="col-sm-4 text-sm-right"><dt>Date of Birth:</dt></div>
+                <div class="col-sm-8 text-sm-left">
+                  <dd class="mb-1"><%= @user.date_of_birth %></dd>
+                </div>
+              </dl>
+              <dl class="row mb-0">
+                <div class="col-sm-4 text-sm-right"><dt>Gender:</dt></div>
+                <div class="col-sm-8 text-sm-left">
+                  <dd class="mb-1"><%= @user.gender %></dd>
+                </div>
+              </dl>
+                <dl class="row mb-0">
+                <div class="col-sm-4 text-sm-right"><dt>Address:</dt></div>
+                <div class="col-sm-8 text-sm-left">
+                  <dd class="mb-1"><%= @user.address %></dd>
+                </div>
+              </dl>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-3">
+    <div class="wrapper wrapper-content project-manager">
+      <h4>Profile Actions</h4>
+      <div class="text-center m-t-md">
+        <div class="row">
+          <div class="col-lg-12">
+            <%= link_to profiles_show_path(@user), class: "btn btn-block btn-primary m-b-sm" do %>
+              <i class="fa fa-edit"></i> Edit Profile
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
