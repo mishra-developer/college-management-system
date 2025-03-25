@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Leave Approval Request</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      color: #333;
+      line-height: 1.6;
+    }
+    .container {
+      width: 100%;
+      max-width: 600px;
+      margin: 40px auto;
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      color: #0056b3;
+      font-size: 24px;
+    }
+    p {
+      font-size: 16px;
+      color: #555;
+      margin: 15px 0;
+    }
+    .btn {
+      display: inline-block;
+      background-color: #28a745;
+      color: #ffffff;
+      padding: 12px 25px;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 16px;
+      transition: background 0.3s;
+    }
+    .btn:hover {
+      background-color: #218838;
+    }
+    .footer {
+      margin-top: 30px;
+      font-size: 14px;
+      color: #777;
+      text-align: center;
+    }
+    .footer a {
+      color: #0056b3;
+      text-decoration: none;
+    }
+    .footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Hello <%= @teacher.first_name %>,</h1>
+    <p>You have received a new leave approval request from one of your staff members. Please review the details and take appropriate action.</p>
+    <p>Click the button below to approve or reject the request:</p>
+    <a href="http://localhost:3000/leave_requests/<%= @leave.id %>" class="btn">Review Request</a>
+    <p>If you have any questions, feel free to <a href="mailto:support@college.com">contact support</a>.</p>
+    
+    <div class="footer">
+      <p>Best regards, <br> The College Management System Team</p>
+      <p>&copy; 2025 College Management System. All rights reserved.</p>
+    </div>
+  </div>
+</body>
+</html>

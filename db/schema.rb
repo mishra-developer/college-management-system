@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_12_08_180026) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_17_131210) do
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -42,6 +42,21 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_08_180026) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "leave_requests", force: :cascade do |t|
+    t.date "form_date"
+    t.date "to_date"
+    t.text "reason"
+    t.integer "leave_type", default: 0
+    t.integer "request_id"
+    t.integer "user_id"
+    t.integer "approval_id"
+    t.integer "status", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["approval_id"], name: "index_leave_requests_on_approval_id"
+    t.index ["user_id"], name: "index_leave_requests_on_user_id"
+  end
+
   create_table "parents", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -55,12 +70,22 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_08_180026) do
     t.string "shift_timing_to"
   end
 
+  create_table "students", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "super_admins", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "teachers", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "transpots", force: :cascade do |t|
+  create_table "transports", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "vehicle_number"
@@ -80,10 +105,10 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_08_180026) do
     t.string "role"
     t.string "first_name"
     t.string "last_name"
-    t.string "roll_no"
     t.string "phone_number"
     t.date "date_of_birth"
     t.string "gender"
+    t.string "roll_no"
     t.text "address"
     t.string "employee_id"
     t.string "subject_specialization"
@@ -91,7 +116,10 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_08_180026) do
     t.integer "experience_years"
     t.string "designation"
     t.date "joining_date"
+    t.integer "parent_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
+
+  add_foreign_key "leave_requests", "users", column: "approval_id"
 end
