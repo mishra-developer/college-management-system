@@ -7,4 +7,8 @@
 //= link administrate/application.js
 //= link logo.png
 //= link logo1.png
-  //= link logo3.png
+//= link logo3.png
+//= link accro2.png
+ //= link accro4.png
+ //= link accro.png
+ //= link accro5.jpeg
