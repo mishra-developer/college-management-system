@@ -13,11 +13,14 @@ class StudentDashboard < Administrate::BaseDashboard
     date_of_birth: Field::Date,
     designation: Field::String,
     email: Field::String,
+    employee_id: Field::String,
     encrypted_password: Field::String,
     experience_years: Field::Number,
     first_name: Field::String,
     gender: Field::String,
     last_name: Field::String,
+
+    parent: Field::BelongsTo,
     phone_number: Field::String,
     qualification: Field::String,
     remember_created_at: Field::DateTime,
@@ -61,6 +64,7 @@ class StudentDashboard < Administrate::BaseDashboard
     role
     roll_no
     subject_specialization
+    parent
   ].freeze
 
   # FORM_ATTRIBUTES
@@ -78,15 +82,16 @@ class StudentDashboard < Administrate::BaseDashboard
     :roll_no,
     :subject_specialization,
     :qualification,
+    :parent,
     :password
     ].freeze
-  
+
   # Hidden fields
   HIDDEN_FIELDS = {
     role: "Student"
-    
+
   }.freeze
-  
+
   # COLLECTION_FILTERS
   # a hash that defines filters that can be used while searching via the search
   # field of the dashboard.

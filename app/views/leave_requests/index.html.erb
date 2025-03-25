@@ -1,0 +1,54 @@
+
+ <% if flash[:error].present? %>
+      <p class='flash-error'><%= flash[:error] %></p>
+    <% end %>
+    <% if flash[:success].present? %>
+      <p class='flash-success'><%= flash[:success] %></p>
+    <% end %>
+
+<div class="container mt-4" >
+  <div class="row">
+     <div class="row align-items-center mb-4">
+  <div class="col-md-6">
+    <h2 class="mb-0">My Leaves</h2>
+  </div>
+  <div class="col-md-6 text-end">
+    <%= link_to "Apply Leave", new_leave_request_path, class: "btn btn-primary" %>
+  </div>
+</div>
+    <div class="col-md-12">
+      <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+          <thead class="table-dark">
+            <tr>
+              <th>From Date</th>
+              <th>To Date</th>
+              <th>Reason</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @leaves.each_with_index do |leave, index| %>
+              <tr class="clickable-row" data-href="/leave_requests/<%= leave.id %>">
+                <td><%= leave.form_date %></td>
+                <td><%= leave.to_date %></td>
+                <td><%= leave.reason %></td>
+                <td><%= leave.status %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".clickable-row").forEach(row => {
+      row.addEventListener("click", function () {
+        window.location.href = this.dataset.href;
+      });
+    });
+  });
+</script>
