@@ -19,6 +19,7 @@ class ParentDashboard < Administrate::BaseDashboard
     phone_number: Field::String,
     qualification: Field::String,
     role: Field::String,
+    students: Field::HasMany,
 
     password: Field::Password
   }.freeze
@@ -48,7 +49,7 @@ class ParentDashboard < Administrate::BaseDashboard
     gender
     last_name
     phone_number
-    role
+    students
   ].freeze
 
   # FORM_ATTRIBUTES
@@ -65,6 +66,7 @@ class ParentDashboard < Administrate::BaseDashboard
     phone_number
     qualification
     password
+    students
   ].freeze
 
   HIDDEN_FIELDS = {
@@ -78,15 +80,15 @@ class ParentDashboard < Administrate::BaseDashboard
   # For example to add an option to search for open resources by typing "open:"
   # in the search field:
   #
-  #   COLLECTION_FILTERS = {
-  #     open: ->(resources) { resources.where(open: true) }
-  #   }.freeze
+    COLLECTION_FILTERS = {
+      open: ->(resources) { resources.where(open: true) }
+    }.freeze
   COLLECTION_FILTERS = {}.freeze
 
   # Overwrite this method to customize how parents are displayed
   # across all pages of the admin dashboard.
   #
   # def display_resource(parent)
-  #   "Parent ##{parent.id}"
+  #   parent.id
   # end
 end

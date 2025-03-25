@@ -1,6 +1,6 @@
 require "administrate/base_dashboard"
 
-class TeacherDashboard < Administrate::BaseDashboard
+class TransportDashboard < Administrate::BaseDashboard
   # ATTRIBUTE_TYPES
   # a hash that describes the type of each of the model's fields.
   #
@@ -9,23 +9,22 @@ class TeacherDashboard < Administrate::BaseDashboard
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
     id: Field::Number,
-    first_name: Field::String,
-    last_name: Field::String,
-    phone_number: Field::String,
-    email: Field::String,
     address: Field::Text,
     date_of_birth: Field::Date,
     designation: Field::String,
+    email: Field::String,
     employee_id: Field::String,
-    encrypted_password: Field::String,
-    experience_years: Field::Number,
+    first_name: Field::String,
     gender: Field::String,
     joining_date: Field::Date,
+    last_name: Field::String,
+    phone_number: Field::String,
     qualification: Field::String,
-    remember_created_at: Field::DateTime,
     role: Field::String,
-    password: Field::Password,
-    subject_specialization: Field::String,
+    vehicle_number: Field::String,
+    route: Field::String,
+    type: Field::String,
+    college_id: Field::String
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -34,9 +33,9 @@ class TeacherDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = %i[
-    employee_id
-    first_name
-    email
+    id
+    address
+    date_of_birth
     designation
   ].freeze
 
@@ -44,19 +43,21 @@ class TeacherDashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = %i[
     id
-    first_name
-    last_name
-    email
-    phone_number
     address
     date_of_birth
     designation
+    email
     employee_id
-    experience_years
+    first_name
     gender
     joining_date
-    qualification
-    subject_specialization
+    last_name
+    phone_number
+    role
+    vehicle_number
+    route
+    type
+    college_id
   ].freeze
 
   # FORM_ATTRIBUTES
@@ -69,19 +70,22 @@ class TeacherDashboard < Administrate::BaseDashboard
     phone_number
     address
     date_of_birth
+    designation
     employee_id
     gender
-    designation
-    experience_years
     joining_date
     qualification
+    role
+    route
+    type
+    college_id
     subject_specialization
-    password
   ].freeze
 
   HIDDEN_FIELDS = {
-    role: "Teacher"
+    role: "Transport"
   }.freeze
+
   # COLLECTION_FILTERS
   # a hash that defines filters that can be used while searching via the search
   # field of the dashboard.
@@ -94,10 +98,10 @@ class TeacherDashboard < Administrate::BaseDashboard
   #   }.freeze
   COLLECTION_FILTERS = {}.freeze
 
-  # Overwrite this method to customize how teachers are displayed
+  # Overwrite this method to customize how transports are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(teacher)
-  #   "Teacher ##{teacher.id}"
+  # def display_resource(transport)
+  #   "Transport ##{transport.id}"
   # end
 end

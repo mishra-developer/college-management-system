@@ -4,6 +4,10 @@ class ProfilesController < ApplicationController
   end
 
   def show
-    @student =User.find(params[:format])
+    @user =User.find(params[:format])
+  end
+
+  def update
+    @user =User.find(params[:format])
   end
 end

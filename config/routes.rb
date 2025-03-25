@@ -33,5 +33,6 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   resources :students
   resources :teachers
+  resources :leave_requests
   root "welcome#index"
 end
