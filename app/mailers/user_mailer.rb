@@ -7,7 +7,7 @@ class UserMailer < ApplicationMailer
   end
 
   def send_email_for_approval(leave, admin)
-    @teacher = Teacher.find(user.approval_id)
+    @teacher = Teacher.find(leave.approval_id)
     @admin = admin
     @leave = leave
     mail(to: [@teacher.email, @admin.email], subject: 'Leave application received!', from: 'rmishra747728@gmail.com') do |format|
