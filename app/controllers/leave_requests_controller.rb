@@ -1,15 +1,52 @@
 class LeaveRequestsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_leave_request, only: [:show, :edit, :update, :destroy]
+  before_action :set_leave_request, only: [:show, :edit, :update, :destroy, :update_status]
 
   def index
     @leaves = current_user.leave_requests
+    @total_leaves = current_user.leave_requests.count
+    @total_approved_leaves = current_user.leave_requests.where(status: :approved).count
+    @total_pending_leaves = current_user.leave_requests.where(status: :pending).count
+    @total_cancelled_leaves = current_user.leave_requests.where(status: :cancelled).count
+
     if current_user.role == 'Teacher'
       @leaves = LeaveRequest.where(approval_id: current_user.id)
+      @total_leaves = LeaveRequest.where(approval_id: current_user.id).count
+      @total_approved_leaves = LeaveRequest.where(approval_id: current_user.id, status: :approved).count
+      @total_pending_leaves = LeaveRequest.where(approval_id: current_user.id, status: :pending).count
+      @total_cancelled_leaves = LeaveRequest.where(approval_id: current_user.id, status: :cancelled).count
+    end
+
+    if current_user.role == 'SuperAdmin'
+      @leaves = LeaveRequest.all
+      @total_leaves = LeaveRequest.all.count
+      @total_approved_leaves = LeaveRequest.where(status: :approved).count
+      @total_pending_leaves = LeaveRequest.where( status: :pending).count
+      @total_cancelled_leaves = LeaveRequest.where( status: :cancelled).count
     end
   end
 
   def show
+    @total_leaves = current_user.leave_requests.count
+    @total_approved_leaves = current_user.leave_requests.where(status: :approved).count
+    @total_pending_leaves = current_user.leave_requests.where(status: :pending).count
+    @total_cancelled_leaves = current_user.leave_requests.where(status: :cancelled).count
+
+    if current_user.role == 'Teacher'
+      @leaves = LeaveRequest.where(approval_id: current_user.id)
+      @total_leaves = LeaveRequest.where(approval_id: current_user.id).count
+      @total_approved_leaves = LeaveRequest.where(approval_id: current_user.id, status: :approved).count
+      @total_pending_leaves = LeaveRequest.where(approval_id: current_user.id, status: :pending).count
+      @total_cancelled_leaves = LeaveRequest.where(approval_id: current_user.id, status: :cancelled).count
+    end
+
+    if current_user.role == 'SuperAdmin'
+      @leaves = LeaveRequest.all
+      @total_leaves = LeaveRequest.where(user_id: @leave.user.id).count
+      @total_approved_leaves = LeaveRequest.where(status: :approved, user_id: @leave.user.id).count
+      @total_pending_leaves = LeaveRequest.where( status: :pending, user_id: @leave.user.id).count
+      @total_cancelled_leaves = LeaveRequest.where( status: :cancelled, user_id: @leave.user.id).count
+    end
   end
 
   def new
@@ -34,6 +71,17 @@ class LeaveRequestsController < ApplicationController
       redirect_to leave_requests_path, notice: 'Leave request was successfully updated.'
     else
       render :edit
+    end
+  end
+
+  def update_status
+    if @leave.update(status: params[:status])
+      redirect_to leave_request_path(@leave), 
+                  notice: "Leave request was successfully #{params[:status]}."
+       UserMailer.send_email_update_status(@leave, @leave.user).deliver_now
+    else
+      redirect_to leave_request_path(@leave), 
+                  alert: "Failed to update leave status: #{@leave.errors.full_messages.to_sentence}"
     end
   end
 

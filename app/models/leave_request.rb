@@ -5,7 +5,11 @@ class LeaveRequest < ApplicationRecord
   enum :status, { pending: 0, approved: 1, cancelled: 2 }
   enum :leave_type, {full_day: 0, half_day: 1}
 
-  STATUS_COLORS = {pending: '3386ff', approved: '086a22', cancelled: '3386ff' }.freeze
+  STATUS_COLORS = {
+    'approved' => 'success',
+    'pending' => 'warning',
+    'cancelled' => 'danger'
+  }.freeze
 
   after_create :send_email_for_approval
 
