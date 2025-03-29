@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     resources :teachers
     resources :parents
     resources :transports
+    resources :leave_request
     root to: "users#index"
   end
 
@@ -33,6 +34,12 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   resources :students
   resources :teachers
-  resources :leave_requests
+  resources :leave_requests do
+    member do
+      patch :update_status
+      get :update_status  # temporary
+    end
+  end
+  resources :profiles
   root "welcome#index"
 end

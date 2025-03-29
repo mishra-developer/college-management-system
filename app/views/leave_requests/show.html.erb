@@ -1,4 +1,59 @@
 
+ <div class="container mt-4" >
+<div class="row">
+  <div class="col-md-3">
+    <div class="ibox" style="background-color: white; border-radius: 5px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+      <div class="ibox-title d-flex justify-content-between align-items-center">
+        <h5 class="m-0">Total Leaves</h5>
+        <div class="ibox-tools">
+          <span class="badge bg-primary float-end">Total</span>
+        </div>
+      </div>
+      <div class="ibox-content">
+        <h1 class="no-margins"><%= @total_leaves %></h1>
+      </div>
+    </div>
+  </div>
+    <div class="col-md-3">
+    <div class="ibox" style="background-color: white; border-radius: 5px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+      <div class="ibox-title d-flex justify-content-between align-items-center">
+        <h5 class="m-0">Total Approved Leaves</h5>
+        <div class="ibox-tools">
+          <span class="badge bg-success float-end">Total</span>
+        </div>
+      </div>
+      <div class="ibox-content">
+        <h1 class="no-margins"><%= @total_approved_leaves %></h1>
+      </div>
+    </div>
+  </div>
+    <div class="col-md-3">
+    <div class="ibox" style="background-color: white; border-radius: 5px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+      <div class="ibox-title d-flex justify-content-between align-items-center">
+        <h5 class="m-0">Total Pending Leaves</h5>
+        <div class="ibox-tools">
+          <span class="badge bg-warning float-end">Total</span>
+        </div>
+      </div>
+      <div class="ibox-content">
+        <h1 class="no-margins"><%= @total_pending_leaves %></h1>
+      </div>
+    </div>
+  </div>
+    <div class="col-md-3">
+    <div class="ibox" style="background-color: white; border-radius: 5px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+      <div class="ibox-title d-flex justify-content-between align-items-center">
+        <h5 class="m-0">Total Cancelled Leaves</h5>
+        <div class="ibox-tools">
+          <span class="badge bg-danger float-end">Total</span>
+        </div>
+      </div>
+      <div class="ibox-content">
+        <h1 class="no-margins"><%= @total_cancelled_leaves %></h1>
+      </div>
+    </div>
+  </div>
+</div>
  <% if flash[:error].present? %>
       <p class='flash-error'><%= flash[:error] %></p>
     <% end %>
@@ -48,6 +103,20 @@
                   </dd>
                 </div>
               </dl>
+               <dl class="row mb-0">
+                <div class="col-sm-4 text-sm-right"><dt>Leave Type:</dt></div>
+                <div class="col-sm-8 text-sm-left">
+                  <dd class="mb-1"><%= @leave.leave_type %>
+                  </dd>
+                </div>
+              </dl>
+               <dl class="row mb-0">
+                <div class="col-sm-4 text-sm-right"><dt>Approval:</dt></div>
+                <div class="col-sm-8 text-sm-left">
+                  <dd class="mb-1"><%= User.find(@leave.approval_id).full_name %>
+                  </dd>
+                </div>
+              </dl>
             </div>
 
             <div class="col-lg-6">
@@ -75,9 +144,7 @@
                 <div class="col-sm-4 text-sm-right"><dt>Status:</dt></div>
                 <div class="col-sm-8 text-sm-left">
              <div>
-                <span class="badge" style="background-color: <%= LeaveRequest::STATUS_COLORS[@leave.status.to_sym] %>">
-                  <%= @leave.status %>
-                </span>
+                <span class="badge bg-<%= LeaveRequest::STATUS_COLORS[@leave.status] %>"><%= @leave.status %></span>
               </div>
                           
               </div>
@@ -91,4 +158,34 @@
       </div>
     </div>
   </div>
+  <%if current_user.role == 'Teacher'|| 'SuperAdmin'%>
+    <div class="col-lg-3">
+    <div class="wrapper wrapper-content project-manager">
+      <h4>Leave Approval Actions</h4>
+      <div class="text-center m-t-md">
+        <div class="row">
+          <div class="col-lg-12">
+            <%= button_to "Approve",
+                update_status_leave_request_path(@leave, status: 'approved'),
+                method: :patch,
+                class: "btn btn-block btn-success m-b-sm" %>
+          </div>
+        </div>
+      </div>
+      
+      <div class="text-center m-t-md mt-2">
+        <div class="row">
+          <div class="col-lg-12">
+            <%= link_to update_status_leave_request_path(@leave, status: 'cancelled'), 
+                method: :patch, 
+                class: "btn btn-block btn-danger m-b-sm" do %>
+              <i class="fa fa-times"></i> Cancel
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%end%>
+</div>
 </div>
