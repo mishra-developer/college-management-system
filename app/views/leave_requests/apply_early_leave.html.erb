@@ -1,10 +1,10 @@
 <div class="container mt-4">
   <div class="row justify-content-center">
     <div class="col-md-6">
-      <h2 class="text-center mb-4">Apply Leave</h2>
+      <h2 class="text-center mb-4">Apply For Early Leave</h2>
 
       <%= form_with(model: @leave, local: true, html: { class: "card p-4 shadow" }) do |f| %>
-        
+
         <% if current_user.role == 'SuperAdmin' %>
           <div class="mb-3">
             <%= f.label :student_id, "Select Student by Email", class: "form-label" %>
@@ -17,29 +17,25 @@
         <% end %>
 
         <div class="mb-3">
-          <%= f.label :form_date, "From Date", class: "form-label" %>
-          <%= f.date_field :form_date, min: Date.today, class: "form-control" %>
-        </div>
-
-        <div class="mb-3">
-          <%= f.label :to_date, "To Date", class: "form-label" %>
-          <%= f.date_field :to_date, min: Date.today, class: "form-control" %>
-        </div>
-
-        <div class= "mb-3">
-          <%= f.label :leave_type, "Leave Type", class: "for,=label"%>
-          <%= f.select :leave_type, LeaveRequest.leave_types.map {|key, value| key}, class: "form-select"%>
-        </div>
-
-        <div class="mb-3">
           <%= f.label :approval_id, "Approval By", class: "form-label" %>
           <%= f.select :approval_id, Teacher.all.map { |t| [t.email, t.id] }, class: "form-select" %>
+        </div>
+
+        <div class="mb-3">
+          <%= f.label :transport, "Transport", class: "form-label" %>
+          <%= f.select :transport, LeaveRequest.transports.map { |key, value| [key.to_s.titleize, key] }, class: "form-select" %>
         </div>
 
         <div class="mb-3">
           <%= f.label :reason, "Reason for Leave", class: "form-label" %>
           <%= f.text_area :reason, class: "form-control", rows: 3 %>
         </div>
+
+        <%=f.hidden_field :form_date, value: Date.today%>
+        <%=f.hidden_field :to_date, value: Date.today%>
+        <%=f.hidden_field :leave_type, value: :half_day%>
+        <%=f.hidden_field :apply_early_leave, value: 'true'%>
+
 
         <div class="text-center">
           <%= f.submit "Submit Leave Request", class: "btn btn-primary w-100  m-b" %>

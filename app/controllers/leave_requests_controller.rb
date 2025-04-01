@@ -51,9 +51,25 @@ class LeaveRequestsController < ApplicationController
 
   def new
     @leave = current_user.leave_requests.new
+    @students = Student.all
   end
 
   def create
+    @leave = current_user.leave_requests.new(leave_request_params)
+
+    if @leave.save
+      redirect_to leave_requests_path, notice: 'Leave request was successfully created.'
+    else
+      render :new
+    end
+  end
+
+  def apply_early_leave
+    @leave = current_user.leave_requests.new
+    @students = Student.all
+  end
+
+  def create_early_leave
     @leave = current_user.leave_requests.new(leave_request_params)
 
     if @leave.save
@@ -79,8 +95,9 @@ class LeaveRequestsController < ApplicationController
       redirect_to leave_request_path(@leave), 
                   notice: "Leave request was successfully #{params[:status]}."
        UserMailer.send_email_update_status(@leave, @leave.user).deliver_now
+       UserMailer.send_email_for_early_leave_approval(@leave).deliver_now if @leave.transport.present?
     else
-      redirect_to leave_request_path(@leave), 
+      redirect_to leave_request_path(@leave),
                   alert: "Failed to update leave status: #{@leave.errors.full_messages.to_sentence}"
     end
   end
@@ -97,6 +114,6 @@ class LeaveRequestsController < ApplicationController
   end
 
   def leave_request_params
-    params.require(:leave_request).permit(:form_date, :to_date, :reason, :leave_type, :request_id, :approval_id, :status)
+    params.require(:leave_request).permit(:form_date, :to_date, :reason, :leave_type, :request_id, :approval_id, :status, :transport)
   end
 end

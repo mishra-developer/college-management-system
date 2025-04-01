@@ -4,6 +4,7 @@ class LeaveRequest < ApplicationRecord
 
   enum :status, { pending: 0, approved: 1, cancelled: 2 }
   enum :leave_type, {full_day: 0, half_day: 1}
+  enum :transport, {College_transport: 0, own_vahicle: 1}
 
   STATUS_COLORS = {
     'approved' => 'success',

@@ -60,14 +60,21 @@
 </head>
 <body>
   <div class="container">
-    <h1>Hello <%= @teacher.first_name %>,</h1>
+    <h1><%= @leave.user.first_name %> wants to take leave</h1>
     <p>You have received a new leave approval request from one of your staff members. Please review the details and take appropriate action.</p>
+    
+    <p>Student intends to travel by: <%= @leave.transport if @leave.transport.present? %></p>
+    
+    <p>Please confirm with the parent. Phone Number: <%= @parent.phone_number %></p>
+    
     <p>Click the button below to approve or reject the request:</p>
+    
     <a href="http://localhost:3000/leave_requests/<%= @leave.id %>" class="btn">Review Request</a>
+    
     <p>If you have any questions, feel free to <a href="mailto:support@college.com">contact support</a>.</p>
     
     <div class="footer">
-      <p>Best regards, <br> The College Management System Team</p>
+      <p>Best regards,<br> The College Management System Team</p>
       <p>&copy; 2025 College Management System. All rights reserved.</p>
     </div>
   </div>
