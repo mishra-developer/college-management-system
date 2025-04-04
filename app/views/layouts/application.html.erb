@@ -31,7 +31,7 @@
     <%= javascript_importmap_tags %> 
   </head>
 
-  <body style="background-color: #E5E4E2"> 
+  <body style="background-color: #E5E4E2;  position: relative; min-height: 100vh;"> 
     <%if current_user.present?%>
       <nav class="navbar navbar-expand-lg navbar-light custom-navbar">
           <%= link_to welcome_index_path, class: "navbar-brand text-white" do %>
@@ -42,7 +42,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarText">
           <span class="navbar-text sign-out-link d-flex align-items-center justify-content-end">
-          <%if current_user.role == 'Teacher' || 'SuperAdmin'%>
+          <%unless current_user.role == 'Transport' %>
               <%= link_to 'Attendance', lactures_path, class: 'text-white me-3' %>
           <%end%>
             <%if current_user.role == 'SuperAdmin'%>
