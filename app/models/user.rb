@@ -14,6 +14,11 @@ class User < ApplicationRecord
 
   has_many :leave_requests
   belongs_to :parent, optional: true
+  has_one_attached :avatar do |attachable|
+    attachable.variant :thumb, resize_to_limit: [100, 100]
+    attachable.variant :square, resize_to_limit: [200, 200]
+    attachable.variant :medium, resize_to_limit: [300, 300]
+  end
 
 
   scope :admin_user, -> {find_by(role: 'SuperAdmin')}
