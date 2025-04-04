@@ -1,0 +1,44 @@
+<div class="text-center mt-4 card mb-4">
+  <h3>Attendances of <%= Date.current %></h3>
+</div>
+
+<div class="container mt-4">
+  <div class="row">
+    <% @lacture.class_room.students.each do |student| %>
+      <div class="col-md-4 mb-4">
+        <div class="card" style="cursor: pointer; border: 1px solid #ddd;">
+          <div class="card-body">
+            <span class="font-weight-bold">Student: </span>
+            <h5 class="card-title"><%= student.full_name %></h5>
+
+            <% attendances = @lacture.attendances.where(student_id: student.id) %>
+            <% attendance = attendances.last %>
+            <% attendance_count = attendances.where(created_at: 1.month.ago..Time.current, status: :present).count %>
+
+            <p class="mt-2">
+              <strong>Status: </strong>
+              <span id="attendance-status-<%= student.id %>">
+                <%= attendance&.status&.capitalize || 'Not Marked' %>
+              </span>
+            </p>
+
+            <p class="mt-2">
+              <strong>Total Presence: </strong> <%= attendance_count %> 
+              <% if attendance_count == 1 %> Day <% else %> Days <% end %>
+            </p>
+
+
+            <%= form_with url: lacture_attendances_path(@lacture), method: :post, data: { turbo: "true" } do |f| %>
+              <%= f.hidden_field :student_id, value: student.id %>
+
+
+              <%= f.submit 'Absent', class: "btn btn-danger me-2", name: "status", value: "absent" %>
+              <%= f.submit 'Present', class: "btn btn-success", name: "status", value: "present" %>
+            <% end %>
+
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

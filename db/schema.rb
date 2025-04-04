@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_17_131210) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_01_130518) do
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -40,6 +40,37 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_17_131210) do
   create_table "admins", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "attendances", force: :cascade do |t|
+    t.integer "student_id"
+    t.integer "lacture_id"
+    t.integer "status", default: 0
+    t.date "date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["lacture_id"], name: "index_attendances_on_lacture_id"
+    t.index ["student_id"], name: "index_attendances_on_student_id"
+  end
+
+  create_table "class_rooms", force: :cascade do |t|
+    t.string "stream"
+    t.integer "NumberOFStudent"
+    t.string "year"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "lactures", force: :cascade do |t|
+    t.string "topic", null: false
+    t.datetime "start_time", null: false
+    t.datetime "end_time", null: false
+    t.integer "teacher_id"
+    t.integer "class_room_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["class_room_id"], name: "index_lactures_on_class_room_id"
+    t.index ["teacher_id"], name: "index_lactures_on_teacher_id"
   end
 
   create_table "leave_requests", force: :cascade do |t|
@@ -96,32 +127,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_17_131210) do
     t.string "college_id"
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "role"
-    t.string "first_name"
-    t.string "last_name"
-    t.string "phone_number"
-    t.date "date_of_birth"
-    t.string "gender"
-    t.string "roll_no"
-    t.text "address"
-    t.string "employee_id"
-    t.string "subject_specialization"
-    t.string "qualification"
-    t.integer "experience_years"
-    t.string "designation"
-    t.date "joining_date"
-    t.integer "parent_id"
-    t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-  end
+# Could not dump table "users" because of following StandardError
+#   Unknown type '' for column 'class_room_id'
+
 
   add_foreign_key "leave_requests", "users", column: "approval_id"
 end

@@ -66,6 +66,10 @@
     <p>Student intends to travel by: <%= @leave.transport if @leave.transport.present? %></p>
     
     <p>Please confirm with the parent. Phone Number: <%= @parent.phone_number %></p>
+
+    <%if @user.role =='Student'%>
+      <p>The total attendance count in this month is<%@user.attendances.where(created_at: 1.month.ago..Time.current).count%> </p>
+    <%end%>
     
     <p>Click the button below to approve or reject the request:</p>
     

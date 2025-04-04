@@ -26,7 +26,7 @@ class Users::SessionsController < Devise::SessionsController
   # end
   def after_sign_in_path_for(resource_or_scope)
     if resource_or_scope.role === 'SuperAdmin'
-      admin_users_path
+      admin_students_path
     else
       stored_location_for(resource_or_scope) || signed_in_root_path(resource_or_scope)
     end

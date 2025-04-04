@@ -32,6 +32,10 @@
     <%if @leave.transport.present? %>
       <%@user.first_name%> wants to go with <%@leave.transport %>
     <%end%>
+
+    <%if @user.role =='Student'%>
+      The total attendance count In this mounth is<%@user.attendances.where(created_at: 1.month.ago..Time.current).count%>
+    <%end%>
     
     <p>Best regards,</p>
     <p>The School Administration</p>

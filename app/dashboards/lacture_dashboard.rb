@@ -1,6 +1,6 @@
 require "administrate/base_dashboard"
 
-class TeacherDashboard < Administrate::BaseDashboard
+class LactureDashboard < Administrate::BaseDashboard
   # ATTRIBUTE_TYPES
   # a hash that describes the type of each of the model's fields.
   #
@@ -9,24 +9,13 @@ class TeacherDashboard < Administrate::BaseDashboard
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
     id: Field::Number,
-    first_name: Field::String,
-    last_name: Field::String,
-    phone_number: Field::String,
-    email: Field::String,
-    address: Field::Text,
-    date_of_birth: Field::Date,
-    designation: Field::String,
-    employee_id: Field::String,
-    encrypted_password: Field::String,
-    experience_years: Field::Number,
-    gender: Field::String,
-    joining_date: Field::Date,
-    qualification: Field::String,
-    remember_created_at: Field::DateTime,
-    role: Field::String,
-    password: Field::Password,
-    lactures: Field::HasMany,
-    subject_specialization: Field::String,
+    class_room: Field::BelongsTo,
+    end_time: Field::DateTime,
+    start_time: Field::DateTime,
+    teacher: Field::BelongsTo,
+    topic: Field::String,
+    created_at: Field::DateTime,
+    updated_at: Field::DateTime,
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -35,55 +24,35 @@ class TeacherDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = %i[
-    employee_id
-    first_name
-    email
-    designation
+    id
+    class_room
+    end_time
+    start_time
+    teacher
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = %i[
     id
-    first_name
-    last_name
-    email
-    phone_number
-    address
-    date_of_birth
-    designation
-    employee_id
-    experience_years
-    gender
-    joining_date
-    qualification
-    subject_specialization
-    lactures
+    topic
+    teacher
+    class_room
+    start_time
+    end_time
   ].freeze
 
   # FORM_ATTRIBUTES
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = %i[
-    first_name
-    last_name
-    email
-    phone_number
-    address
-    date_of_birth
-    employee_id
-    gender
-    designation
-    experience_years
-    joining_date
-    qualification
-    subject_specialization
-    password
+    topic
+    teacher
+    class_room
+    start_time
+    end_time
   ].freeze
 
-  HIDDEN_FIELDS = {
-    role: "Teacher"
-  }.freeze
   # COLLECTION_FILTERS
   # a hash that defines filters that can be used while searching via the search
   # field of the dashboard.
@@ -96,10 +65,10 @@ class TeacherDashboard < Administrate::BaseDashboard
   #   }.freeze
   COLLECTION_FILTERS = {}.freeze
 
-  # Overwrite this method to customize how teachers are displayed
+  # Overwrite this method to customize how lactures are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(teacher)
-  #   "Teacher ##{teacher.id}"
+  # def display_resource(lacture)
+  #   "Lacture ##{lacture.id}"
   # end
 end

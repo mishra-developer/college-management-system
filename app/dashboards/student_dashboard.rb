@@ -21,6 +21,7 @@ class StudentDashboard < Administrate::BaseDashboard
     last_name: Field::String,
 
     parent: Field::BelongsTo,
+    class_room: Field::BelongsTo,
     phone_number: Field::String,
     qualification: Field::String,
     remember_created_at: Field::DateTime,
@@ -65,6 +66,7 @@ class StudentDashboard < Administrate::BaseDashboard
     roll_no
     subject_specialization
     parent
+    class_room
   ].freeze
 
   # FORM_ATTRIBUTES
@@ -83,6 +85,7 @@ class StudentDashboard < Administrate::BaseDashboard
     :subject_specialization,
     :qualification,
     :parent,
+    :class_room,
     :password
     ].freeze
 
