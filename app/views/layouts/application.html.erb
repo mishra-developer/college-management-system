@@ -73,6 +73,14 @@
 
     <%end%>
     <%= yield %>
+  
+  <%if current_user.present?%>
+    <footer style="position: absolute; bottom: 0; width: 100%; height: 100px;">
+      <%= render "shared/footer" %>
+    </footer>
+    <%end%>
+<!-- Include the footer -->
+
   </body>
 </html>
  

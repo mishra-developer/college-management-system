@@ -29,6 +29,9 @@ gem "tzinfo-data"
 gem "solid_cache"
 gem "solid_queue"
 gem "solid_cable"
+# implement active storage for attachment
+gem "image_processing", ">= 1.2"
+gem 'active_storage_validations', '~> 1.4'
 
 gem 'administrate'
 
@@ -67,3 +70,5 @@ group :test do
 end
 
 gem "devise", "~> 4.9"
+
+gem "mini_magick", "~> 5.2"
