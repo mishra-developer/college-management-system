@@ -155,11 +155,37 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_04_115809) do
     t.string "college_id"
   end
 
-# Could not dump table "users" because of following StandardError
-#   Unknown type '' for column 'class_room_id'
-
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "role"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "phone_number"
+    t.date "date_of_birth"
+    t.string "gender"
+    t.string "roll_no"
+    t.text "address"
+    t.string "employee_id"
+    t.string "subject_specialization"
+    t.string "qualification"
+    t.integer "experience_years"
+    t.string "designation"
+    t.date "joining_date"
+    t.integer "parent_id"
+    t.integer "class_room_id"
+    t.index ["class_room_id"], name: "index_users_on_class_room_id"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "leave_requests", "users", column: "approval_id"
+  add_foreign_key "users", "class_rooms"
 end
