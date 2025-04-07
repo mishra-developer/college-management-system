@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     resources :parents
     resources :transports
     resources :leave_request
+    resources :securities
     root to: "users#index"
   end
 
@@ -35,6 +36,10 @@ Rails.application.routes.draw do
   resources :students
   resources :teachers
   resources :leave_requests do
+    collection do
+      post :apply_early_leave, to: 'leave_requests#create_early_leave'
+      get  :apply_early_leave, to: 'leave_requests#apply_early_leave'
+    end
     member do
       patch :update_status
       get :update_status  # temporary

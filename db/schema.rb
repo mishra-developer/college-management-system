@@ -53,6 +53,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_17_131210) do
     t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "apply_early_leave"
+    t.integer "transport"
     t.index ["approval_id"], name: "index_leave_requests_on_approval_id"
     t.index ["user_id"], name: "index_leave_requests_on_user_id"
   end

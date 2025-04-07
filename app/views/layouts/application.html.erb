@@ -45,7 +45,22 @@
             <%if current_user.role == 'SuperAdmin'%>
               <%= link_to 'Admin Users', admin_users_path, class: 'text-white me-3' %>
                <%end%>
-              <%= link_to 'Leaves', leave_requests_path, class: 'text-white me-3' %> 
+              <div class="dropdown">
+                <button 
+                  class="btn text-white dropdown-toggle" 
+                  id="dropdownMenuButton" 
+                  data-bs-toggle="dropdown" 
+                  aria-expanded="false">
+                  Leaves
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <li> <a class="dropdown-item" href="/leave_requests">All Leaves</a>
+                  <a class="dropdown-item label-white" href="/leave_requests/new">Apply for Planned Leave</a>
+                  <a class="dropdown-item" href="/leave_requests/apply_early_leave">Apply for Early Leave</a></li>
+                  
+                </ul>
+              </div>
+
               <%= link_to 'Profile', profiles_show_path(current_user), class: ' text-white me-3' %>
               <%= link_to 'Sign Out', destroy_user_session_path, class: 'btn text-white' %>
             </span>
