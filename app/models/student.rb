@@ -1,5 +1,7 @@
 class Student < User
   belongs_to :parent, optional: true
+  belongs_to :class_room, optional: true
+  has_many :attendances
 
   def parent_email
     parent&.email

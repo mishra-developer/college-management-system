@@ -1,14 +1,18 @@
 Rails.application.routes.draw do
+  get "attendances/index"
 
   namespace :admin do
-    resources :users
+    # resources :users
     resources :students
     resources :teachers
     resources :parents
     resources :transports
-    resources :leave_request
+    # resources :leave_request
     resources :securities
-    root to: "users#index"
+    resources :class_rooms
+    resources :lactures
+    resources :attendances
+    root to: "students#index"
   end
 
   get "teachers/scaffold"
@@ -35,6 +39,11 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   resources :students
   resources :teachers
+  resources :class_rooms
+  resources :lactures do
+    resources :attendances
+  end
+  
   resources :leave_requests do
     collection do
       post :apply_early_leave, to: 'leave_requests#create_early_leave'

@@ -28,6 +28,10 @@
     <% else %>
       <p>If you have any questions about this decision, please contact the administration.</p>
     <% end %>
+
+    <%if @user.role =='Student'%>
+      The total attendance count in this month is<%@user.attendances.where(created_at: 1.month.ago..Time.current).count%>
+    <%end%>
     
     <p>Best regards,</p>
     <p>The College Administration</p>

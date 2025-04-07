@@ -1,0 +1,60 @@
+<% if current_user.role.in?(["Teacher", "SuperAdmin"]) %>
+  <div class="text-center mt-4 mb-4">
+    <h3>Lactures</h3>
+  </div>
+  <div class="container mt-4">
+    <div class="row">
+      <% if @lactures.presence %>
+        <% @lactures.each do |lacture| %>
+          <div class="col-md-4 mb-4">
+            <div class="card" style="cursor: pointer; border: 1px solid #ddd;">
+              <div class="card-body">
+                <span class="font-weight-bold">Subject: </span>
+                <h5 class="card-title"><%= lacture.topic %></h5>
+                <p class="card-text"><span class="font-weight-bold">Teacher: </span><%= lacture.teacher.full_name %></p>
+                <p class="card-text"><span class="font-weight-bold">Class: </span><%= lacture.class_room.stream %></p>
+                <p class="card-text"><span class="font-weight-bold">Start Time: </span><%= lacture.start_time.strftime("%I:%M %p") %></p>
+                <p class="card-text"><span class="font-weight-bold">End Time: </span><%= lacture.end_time.strftime("%I:%M %p") %></p>
+                <a href="<%= lacture_attendances_path(lacture_id: lacture.id) %>" class="btn btn-primary">Students</a>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% else %>
+        <h3 class="text-center">No lactures available</h3>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+<% if current_user.role.in?(["Student", "Parent"]) %>
+  <div class="text-center mt-4 mb-4">
+    <h3>Attendance for This Month</h3>
+  </div>
+  <div class="col-md-12">
+    <div class="table-responsive">
+      <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+          <tr>
+            <th>Date</th>
+            <th>Subject</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @attendances.each do |attendance| %>
+            <tr>
+              <td><%= attendance.date.strftime("%d-%m-%Y") %></td>
+              <td><%= attendance.lacture.topic %></td>
+              <td>
+                <span class="badge bg-<%= Attendance::STATUS_COLORS[attendance.status] %>">
+                  <%= attendance.status.capitalize %>
+                </span>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+<% end %>
