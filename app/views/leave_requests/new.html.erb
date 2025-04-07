@@ -14,6 +14,11 @@
           <%= f.date_field :to_date, min: Date.today, class: "form-control" %>
         </div>
 
+        <div class= "mb-3">
+          <%= f.label :leave_type, "Leave Type", class: "for,=label"%>
+          <%= f.select :leave_type, LeaveRequest.leave_types.map {|key, value| key}, class: "form-select"%>
+        </div>
+
         <div class="mb-3">
           <%= f.label :approval_id, "Approval By", class: "form-label" %>
           <%= f.select :approval_id, Teacher.all.map { |t| [t.email, t.id] }, class: "form-select" %>
@@ -27,7 +32,10 @@
         <%= f.hidden_field :request_id, value: current_user.id %>
 
         <div class="text-center">
-          <%= f.submit "Submit Leave Request", class: "btn btn-primary w-100" %>
+          <%= f.submit "Submit Leave Request", class: "btn btn-primary w-100  m-b" %>
+        </div>
+        <div class="text-center mt-2">
+          <%=link_to "Cancel",leave_requests_path, class: "btn btn-danger block w-100 ",  aria: { label: 'Cancel' }  %>
         </div>
       <% end %>
     </div>
