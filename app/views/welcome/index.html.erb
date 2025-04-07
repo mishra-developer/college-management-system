@@ -2,6 +2,47 @@
   <div class="carousel-inner">
     <div class="carousel-item active">
       <%= image_tag "accro2.png", class: "d-block w-100", alt: "Image 1" %>
+      <div class="carousel-caption d-none d-md-block" style="background-color: rgba(255, 255, 255, 0.3); color: black; min-height: 100vh;  display: flex; justify-content: center; align-items: flex-start;  margin: 0;text-align: left;">
+        <% if current_user.role == 'SuperAdmin' %>
+          <h2 style="color: black; text-align: center;">Admin Responsibilities</h2>
+          <ul style="color: black;">
+                      <br>
+
+            <li><h4>Manage all types of Users (students, parents, teachers)</h4></li>
+            <br>
+            <li><h4>Assign class rolls and lectures to students</h4></li>            <br>
+            <li><h4>Create and manage student attendance</h4></li>            <br>
+            <li><h4>Approve student leaves</h4></li><br>
+            <li><h4>Configure system settings</h4></li><br>
+            <li><h4>View all data</h4></li><br>
+          </ul>
+        <% elsif current_user.role == 'Student' %>
+          <h2 style="color: black; text-align: center;">Your Responsibilities</h2>
+          <ul style="color: black;">
+            <li><h4>Apply for leave</h4></li><br>
+            <li><h4>View attendance</h4></li><br>
+            <li><h4>View profile</h4></li><br>
+            <li><h4>Edit your profile</h4></li><br>
+            <li><h4>Apply for early leave</h4></li><br>
+          </ul>
+        <% elsif current_user.role == 'Teacher' %>
+          <h2 style="color: black; text-align: center;">Your Responsibilities</h2>
+          <ul style="color: black;">
+            <li><h4>View students' leave requests</h4></li><br>
+            <li><h4>Approve or reject leaves</h4></li><br>
+            <li><h4>View total number of leaves</h4></li><br>
+            <li><h4>View your lectures</h4></li><br>
+            <li><h4>Mark student attendance according to lectures</h4></li><br>
+            <li><h4>Update your profile</h4></li><br>
+          </ul>
+        <% elsif current_user.role == 'Parent' %>
+          <h2 style="color: black; text-align: center;">Your Responsibilities</h2>
+          <ul style="color: black;">
+            <li><h4>Update your profile</li></h4><br>
+            <li><h4>View your student's attendance</li></h4><br>
+          </ul>
+        <% end %>
+      </div>
     </div>
     <div class="carousel-item">
       <%= image_tag "accro.png", class: "d-block w-100", alt: "Image 2" %>

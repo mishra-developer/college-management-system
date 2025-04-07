@@ -19,7 +19,6 @@ class StudentDashboard < Administrate::BaseDashboard
     first_name: Field::String,
     gender: Field::String,
     last_name: Field::String,
-
     parent: Field::BelongsTo,
     class_room: Field::BelongsTo,
     phone_number: Field::String,
