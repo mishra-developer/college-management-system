@@ -31,7 +31,7 @@ gem "solid_queue"
 gem "solid_cable"
 # implement active storage for attachment
 gem "image_processing", ">= 1.2"
-gem 'active_storage_validations', '~> 1.4'
+gem 'active_storage_validations', '~> 2.0'
 
 gem 'administrate'
 
