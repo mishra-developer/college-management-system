@@ -1,2 +1,2 @@
-class Transport < User
+class Transport < ApplicationRecord
 end

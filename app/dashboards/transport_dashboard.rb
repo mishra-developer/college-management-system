@@ -9,21 +9,8 @@ class TransportDashboard < Administrate::BaseDashboard
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
     id: Field::Number,
-    address: Field::Text,
-    date_of_birth: Field::Date,
-    designation: Field::String,
-    email: Field::String,
-    employee_id: Field::String,
-    first_name: Field::String,
-    gender: Field::String,
-    joining_date: Field::Date,
-    last_name: Field::String,
-    phone_number: Field::String,
-    qualification: Field::String,
-    role: Field::String,
     vehicle_number: Field::String,
     route: Field::String,
-    type: Field::String,
     college_id: Field::String
   }.freeze
 
@@ -34,29 +21,17 @@ class TransportDashboard < Administrate::BaseDashboard
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = %i[
     id
-    address
-    date_of_birth
-    designation
+    vehicle_number
+    route
+    college_id
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = %i[
     id
-    address
-    date_of_birth
-    designation
-    email
-    employee_id
-    first_name
-    gender
-    joining_date
-    last_name
-    phone_number
-    role
     vehicle_number
     route
-    type
     college_id
   ].freeze
 
@@ -64,22 +39,9 @@ class TransportDashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = %i[
-    first_name
-    last_name
-    email
-    phone_number
-    address
-    date_of_birth
-    designation
-    employee_id
-    gender
-    joining_date
-    qualification
-    role
     route
-    type
     college_id
-    subject_specialization
+    vehicle_number
   ].freeze
 
   HIDDEN_FIELDS = {
