@@ -72,3 +72,4 @@ end
 gem "devise", "~> 4.9"
 
 gem "mini_magick", "~> 5.2"
+gem 'faker', '~> 3.4', '>= 3.4.2'

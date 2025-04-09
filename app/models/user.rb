@@ -8,7 +8,7 @@ class User < ApplicationRecord
 
   self.inheritance_column = :role
 
-  validates :role, presence: true, inclusion: { in: %w[Student Teacher Parent Transport Security SuperAdmin] }
+  validates :role, presence: true, inclusion: { in: %w[Student Teacher Parent Security SuperAdmin] }
 
   after_create :send_welcome_email
 
