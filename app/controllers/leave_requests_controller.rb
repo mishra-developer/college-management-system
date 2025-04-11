@@ -9,6 +9,12 @@ class LeaveRequestsController < ApplicationController
     @total_pending_leaves = current_user.leave_requests.where(status: :pending).count
     @total_cancelled_leaves = current_user.leave_requests.where(status: :cancelled).count
 
+    @leaves = LeaveRequest.all
+    @total_leaves = LeaveRequest.all.count
+    @total_approved_leaves = LeaveRequest.where( status: :approved).count
+    @total_pending_leaves = LeaveRequest.where( status: :pending).count
+    @total_cancelled_leaves = LeaveRequest.where( status: :cancelled).count
+
     if current_user.role == 'Teacher'
       @leaves = LeaveRequest.where(approval_id: current_user.id)
       @total_leaves = LeaveRequest.where(approval_id: current_user.id).count
@@ -23,6 +29,23 @@ class LeaveRequestsController < ApplicationController
       @total_approved_leaves = LeaveRequest.where(status: :approved).count
       @total_pending_leaves = LeaveRequest.where( status: :pending).count
       @total_cancelled_leaves = LeaveRequest.where( status: :cancelled).count
+    end
+
+    if current_user.role == 'Parent'
+      student = current_user.students.first
+      @leaves = LeaveRequest.where(user_id: student.id)
+      @total_leaves = LeaveRequest.where(user_id: student.id).count
+      @total_approved_leaves = LeaveRequest.where(user_id: student.id, status: :approved).count
+      @total_pending_leaves = LeaveRequest.where(user_id: student.id, status: :pending).count
+      @total_cancelled_leaves = LeaveRequest.where(user_id: student.id, status: :cancelled).count
+    end
+
+    if current_user.role == 'Teacher'
+      @leaves = LeaveRequest.where(approval_id: current_user.id)
+      @total_leaves = LeaveRequest.where(approval_id: current_user.id).count
+      @total_approved_leaves = LeaveRequest.where(approval_id: current_user.id, status: :approved).count
+      @total_pending_leaves = LeaveRequest.where(approval_id: current_user.id, status: :pending).count
+      @total_cancelled_leaves = LeaveRequest.where(approval_id: current_user.id, status: :cancelled).count
     end
   end
 

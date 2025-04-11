@@ -116,6 +116,12 @@
                   <dd class="mb-1"><%= User.find(@leave.approval_id).full_name %>
                   </dd>
                 </div>
+              </dl>   <dl class="row mb-0">
+                <div class="col-sm-4 text-sm-right"><dt>Parent Phone Number:</dt></div>
+                <div class="col-sm-8 text-sm-left">
+                  <dd class="mb-1"><%=@leave.user&.parent&.phone_number %>
+                  </dd>
+                </div>
               </dl>
             </div>
 
