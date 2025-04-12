@@ -16,10 +16,15 @@
           <%= f.hidden_field :request_id, value: current_user.id %>
         <% end %>
 
-        <div class="mb-3">
-          <%= f.label :approval_id, "Approval By", class: "form-label" %>
-          <%= f.select :approval_id, Teacher.all.map { |t| [t.email, t.id] }, class: "form-select" %>
-        </div>
+        <%if current_user.role == 'Teacher'%>
+            <%= f.hidden_field :approval_id, value: SuperAdmin.first.id %>
+
+        <%else%>
+          <div class="mb-3">
+            <%= f.label :approval_id, "Approval By", class: "form-label" %>
+            <%= f.select :approval_id, Teacher.all.map { |t| [t.email, t.id] }, class: "form-select" %>
+          </div>
+        <%end%>
 
         <div class="mb-3">
           <%= f.label :transport, "Transport", class: "form-label" %>

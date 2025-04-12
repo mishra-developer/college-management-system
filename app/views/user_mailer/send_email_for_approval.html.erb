@@ -63,11 +63,11 @@
     <h1><%= @leave.user.first_name %> wants to take leave</h1>
     <p>You have received a new leave approval request from one of your staff members. Please review the details and take appropriate action.</p>
     
-    <p>Student intends to travel by: <%= @leave.transport if @leave.transport.present? %></p>
+    <p>Student intends to travel by: <%= @leave.transport if @leave.transport.present? && @student.role =='Student' %></p>
     
     <p>Please confirm with the parent. Phone Number: <%= @parent&.phone_number %></p>
 
-      <p>The total attendance count in this month is<%@student.attendances.where(created_at: 1.month.ago..Time.current).count%> </p>
+      <p>The total attendance count in this month is<%@student.attendances.where(created_at: 1.month.ago..Time.current).count if @student.role =='Student' %> </p>
     
     <p>Click the button below to approve or reject the request:</p>
     

@@ -7,12 +7,12 @@ class UserMailer < ApplicationMailer
   end
 
   def send_email_for_approval(leave, admin)
-    @teacher = Teacher.find(leave.approval_id)
+    @teacher = Teacher.find(leave.approval_id) unless leave.user.role == 'Teacher'
     @admin = admin
     @leave = leave
     @student = leave.user
     @parent = @student.parent
-    mail(to: [@teacher.email, @admin.email], subject: 'Leave application received!', from: 'rmishra747728@gmail.com') do |format|
+    mail(to: [@teacher&.email, @admin.email], subject: 'Leave application received!', from: 'rmishra747728@gmail.com') do |format|
       format.html
     end
   end

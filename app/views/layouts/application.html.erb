@@ -60,9 +60,10 @@
                   <li> <a class="dropdown-item" href="/leave_requests">All Leaves</a>
                   <%unless current_user.role == 'Parent' || current_user.role == 'Security'%>
                     <a class="dropdown-item label-white" href="/leave_requests/new">Apply for Planned Leave</a>
+                    <%unless current_user.role == 'Teacher'%>
                     <a class="dropdown-item" href="/leave_requests/apply_early_leave">Apply for Early Leave</a></li>
+                    <%end%>
                   <%end%>
-                  
                 </ul>
               </div>
 
