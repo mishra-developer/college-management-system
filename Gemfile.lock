@@ -95,7 +95,7 @@ GEM
     benchmark (0.4.0)
     bigdecimal (3.1.8)
     bindex (0.8.1)
-    bootsnap (1.18.4)
+    bootsnap (1.18.5)
       msgpack (~> 1.2)
     brakeman (6.2.2)
       racc
@@ -199,7 +199,7 @@ GEM
       logger
     mini_mime (1.1.5)
     minitest (5.25.1)
-    msgpack (1.7.5)
+    msgpack (1.8.0)
     net-imap (0.5.1)
       date
       net-protocol
